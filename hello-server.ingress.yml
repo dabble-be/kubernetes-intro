@@ -1,0 +1,16 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-server
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: hello-server
+            port:
+              number: 80
+        path: /http/vincent
+        pathType: Prefix
