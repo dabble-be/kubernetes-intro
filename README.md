@@ -14,6 +14,7 @@ However; This exercise does assume a working Kubernetes cluster.
 | [curl](https://curl.se/) | `7.68.0` | command line tool and library for transferring data with URLs |
 | [git](https://git-scm.com/) | `2.25.1` | Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency. |
 | [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) | `v1.22` | lets you control Kubernetes clusters |
+| [tee](https://www.gnu.org/software/coreutils/manual/html_node/Introduction.html) | `8.30` | The tee command copies standard input to standard output and also to any files given as arguments |
 
 ## Running a web application
 
@@ -119,7 +120,7 @@ targetPod="hello-server-5997b67bfd-j5dbm"
 Now that we have stored our pod's name, let's have a look at its logs:
 
 ```sh
-kubectl get logs $targetPod
+kubectl logs "$targetPod"
 ```
 
 _output:_
@@ -131,7 +132,7 @@ _output:_
 Seems like our app is running properly, and listening on port `8080`. This pod is running deep within our Kubernetes cluster though. How are we able to access the service?
 
 ```sh
-targetIP="$( kubectl get pod $targetPod --template='{{.status.podIP }}' )"; echo $targetIP
+targetIP="$( kubectl get pod "$targetPod" --template='{{.status.podIP }}' )"; echo "$targetIP"
 ```
 
 _output:_
@@ -145,7 +146,7 @@ The above command stores the IPv4 address for our pod in variable `targetIP`. Fr
 Let's have a look at the response, with `curl`:
 
 ```sh
-curl -i http://$targetIP:8080
+curl -i "http://$targetIP:8080"
 ```
 
 _output:_
@@ -385,17 +386,11 @@ spec:
 EOF
 ```
 
-Add your environment's name to a variable, for example:
-
-```sh
-export envName="demo"
-```
-
 And add the last part to the ingress manifest:
 
 ```sh
 cat <<EOF | tee --append hello-server.ingress.yml
-        path: /http/$envName
+        path: /http/$STUDENT_ID
         pathType: Prefix
 EOF
 ```
@@ -404,8 +399,10 @@ This will add the last parameters we need. In case of this example, the service 
 
 Open another browser tab at: `https://lab.dabble.be/http/demo/`. (in case of dabble labs)
 
+> (Replace `demo` in the URL with your environments name; Run `echo "$STUDENT_ID"` to get your environment name on dabble-shell)
+> `echo "https://lab.dabble.be/http/$STUDENT_ID"` should do the trick.
 > If you are using the dabble lab, you can use the above URI else, you'll need to refer to the documentation of your platform.
-> Ingress resources are a standard though, so it shouldn't differ between platforms. Although it WONT use `lab.dabble.be`.
+> Ingress resources are a standard though, so it shouldn't differ between platforms.
 
 Refresh a few times to see the value of `Hostname:` differ like when we used `curl` earlier to access our service directly.
 
