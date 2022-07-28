@@ -5,16 +5,13 @@
 ### System Requirements
 
 This exercise has been constructed using the following software versions. These are not hard requirements.
-
 However; This exercise does assume a working Kubernetes cluster.
 
-| Software | Version | Description |
-|----------|---------|-------------|
-| [BASH](https://www.gnu.org/software/bash/) | `5.0.17(1)-release` | Bash is the GNU Project's shell |
-| [curl](https://curl.se/) | `7.68.0` | command line tool and library for transferring data with URLs |
-| [git](https://git-scm.com/) | `2.25.1` | Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency. |
-| [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) | `v1.22` | lets you control Kubernetes clusters |
-| [tee](https://www.gnu.org/software/coreutils/manual/html_node/Introduction.html) | `8.30` | The tee command copies standard input to standard output and also to any files given as arguments |
+  - [BASH](https://www.gnu.org/software/bash/) | `5.0.17(1)-release` | Bash is the GNU Project's shell.
+  - [curl](https://curl.se/) | `7.68.0` | command line tool and library for transferring data with URLs.
+  - [git](https://git-scm.com/) | `2.25.1` | Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+  - [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) | `v1.22` | lets you control Kubernetes clusters.
+  - [tee](https://www.gnu.org/software/coreutils/manual/html_node/Introduction.html) | `8.30` | The tee command copies standard input to standard output and also to any files given as arguments.
 
 ## Running a web application
 
