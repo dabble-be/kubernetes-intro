@@ -1,6 +1,6 @@
 # Kubernetes-intro
 
-![](.assets/images/kubernetes-logo.500x485.png)
+![](https://github.com/dabble-be/kubernetes-intro/raw/main/.assets/images/kubernetes-logo.500x485.png =300x300)
 
 ### System Requirements
 
